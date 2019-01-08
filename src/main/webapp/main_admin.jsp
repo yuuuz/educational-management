@@ -6,13 +6,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>后台管理-学生管理系统</title>
+  <title>后台管理-教务管理系统</title>
   <link rel="stylesheet" href="<%=request.getContextPath() %>/layui/css/layui.css">
+  <style>
+		body{background-image:url('image/bg.jpg');
+			background-repeat:no-repeat;
+			background-attachment:fixed;
+			background-size:cover
+			}
+	</style>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">学生管理系统</div>
+    <div class="layui-logo">教务管理系统</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
 <!--       <li class="layui-nav-item"><a href="">控制台</a></li> -->
@@ -48,9 +55,9 @@
         <li class="layui-nav-item layui-nav-itemed">
           <a class="" href="javascript:;">管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:go('teacher/list')">教师管理</a></dd>
-            <dd><a href="javascript:;">学生管理</a></dd>
-            <dd><a href="javascript:;">列表三</a></dd>
+            <dd><a href="javascript:go('teacher/list');">教师管理</a></dd>
+            <dd><a href="javascript:go('student/list');">学生管理</a></dd>
+            <dd><a href="javascript:;">课程管理</a></dd>
             <dd><a href="">超链接</a></dd>
           </dl>
         </li>
@@ -71,11 +78,6 @@
   <div class="layui-body">
     <!-- 内容主体区域 -->
     <iframe onload="resetFrame()" id="main" style="border:0;width:100%;"></iframe>
-  </div>
-  
-  <div class="layui-footer">
-    <!-- 底部固定区域 -->
-   版权所有
   </div>
 </div>
 <script src="<%=request.getContextPath() %>/layui/layui.js"></script>

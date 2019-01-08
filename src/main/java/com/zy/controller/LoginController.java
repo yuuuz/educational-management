@@ -41,7 +41,7 @@ public class LoginController {
 					// 验证成功
 					// 将用户信息放入session会话
 					request.getSession().setAttribute("loginUser", student);
-					return "main_stu";// 系统管理
+					return "redirect:/main_stu.jsp";// 系统管理
 				}else {
 					// 验证密码失败
 					request.setAttribute("errorMsg", "密码错误");

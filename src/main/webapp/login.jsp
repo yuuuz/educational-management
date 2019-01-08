@@ -33,6 +33,7 @@
 							<a href="<%request.getContextPath();%>/">
 								<input value="登录" style="width:100%;" type="submit">
 							</a>
+							<div style="color: red">${errorMsg}</div>
           </form>
       </div>
       <div class="copyright">西安建筑科技大学 版权所有©2018-2019 </div>

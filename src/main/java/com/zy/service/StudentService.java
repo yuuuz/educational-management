@@ -1,8 +1,14 @@
 package com.zy.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zy.dao.StudentDao;
 import com.zy.entity.Student;
 
@@ -23,5 +29,13 @@ public class StudentService {
 			e.printStackTrace();
 		}
 		return student;
+	}
+	public PageInfo<Student> pageQuery(String q_id,String q_name,int pageNum,int pageSize){
+		PageHelper.startPage(pageNum, pageSize);
+		Map<String, String> map = new HashMap<>();
+		map.put("q_name", q_name);
+		map.put("q_id", q_id);
+		List<Student> all = studentDao.findByMap(map);				
+		return new PageInfo<>(all);
 	}
 }

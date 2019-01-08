@@ -47,13 +47,16 @@
         <li class="layui-nav-item layui-nav-itemed"><a href="javascript:go('my/queryScore')">成绩查询</a></li>
         <li class="layui-nav-item"><a href="javascript:go('my/editInfo')">个人信息</a></li>
         <li class="layui-nav-item"><a href="javascript:go('my/resetPassword')">修改密码</a></li>
+        <li class="layui-nav-item"><a href="javascript:go('notice/list')">通知公告</a></li>
       </ul>
     </div>
   </div>
   
   <div class="layui-body">
     <!-- 内容主体区域 -->
-    <iframe onload="resetFrame()" id="main" style="border:0;width:100%;"></iframe>
+    
+    <iframe onload="resetFrame()" id="main" style="border:0;width:100%;">
+    </iframe>
   </div>
   
   <div class="layui-footer">
