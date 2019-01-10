@@ -5,13 +5,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>后台管理-学生管理系统</title>
+  <title>教务管理系统</title>
   <link rel="stylesheet" href="<%=request.getContextPath() %>/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">学生管理系统-老师端</div>
+    <div class="layui-logo">教务管理系统-老师端</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
 <!--       <li class="layui-nav-item"><a href="">控制台</a></li> -->
@@ -53,6 +53,7 @@
             <dd><a href="javascript:go('score/list');">成绩管理</a></dd>
           </dl>
         </li>
+        <li class="layui-nav-item"><a href="javascript:go('teacher/resetPassword?t_id=${loginUser.t_id}')">修改密码</a></li>
       </ul>
     </div>
   </div>

@@ -35,7 +35,7 @@ public class StudentService {
 		Map<String, String> map = new HashMap<>();
 		map.put("q_name", q_name);
 		map.put("q_id", q_id);
-		List<Student> all = studentDao.findByMap(map);				
+		List<Student> all = studentDao.findByMap(map);			
 		return new PageInfo<>(all);
 	}
 }

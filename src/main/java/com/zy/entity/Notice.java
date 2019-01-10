@@ -6,14 +6,14 @@ package com.zy.entity;
 import java.sql.Timestamp;
 
 public class Notice {
-	private int no_id;
+	private Integer no_id;
 	private String title;
 	private Timestamp date;
 	private String context;
-	public int getNo_id() {
+	public Integer getNo_id() {
 		return no_id;
 	}
-	public void setNo_id(int no_id) {
+	public void setNo_id(Integer no_id) {
 		this.no_id = no_id;
 	}
 	public String getTitle() {

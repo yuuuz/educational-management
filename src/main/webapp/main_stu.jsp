@@ -11,7 +11,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">学生管理系统-学生端</div>
+    <div class="layui-logo">教务管理系统-学生端</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
 <!--       <li class="layui-nav-item"><a href="">控制台</a></li> -->
@@ -46,7 +46,7 @@
       <ul class="layui-nav layui-nav-tree" lay-filter="test">
         <li class="layui-nav-item layui-nav-itemed"><a href="javascript:go('my/queryScore')">成绩查询</a></li>
         <li class="layui-nav-item"><a href="javascript:go('my/editInfo')">个人信息</a></li>
-        <li class="layui-nav-item"><a href="javascript:go('my/resetPassword')">修改密码</a></li>
+        <li class="layui-nav-item"><a href="javascript:go('student/resetPassword?s_id=${loginUser.s_id}')">修改密码</a></li>
         <li class="layui-nav-item"><a href="javascript:go('notice/list')">通知公告</a></li>
       </ul>
     </div>

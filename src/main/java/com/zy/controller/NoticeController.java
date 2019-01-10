@@ -34,12 +34,52 @@ public class NoticeController {
 		return  "notice/list";//转发到页面展示
 	}
 	
+	@RequestMapping("/mlist")
+	public String mlist(@RequestParam(defaultValue="1")Integer pageNum,
+			@RequestParam(defaultValue="10")Integer pageSize,Model model){
+		// 获取老师的信息
+		PageInfo<Notice> pageData = noticeService.pagelist(pageNum, pageSize);
+		// 将数据放到model
+		model.addAttribute("pageInfo", pageData);
+		return  "notice/mlist";//转发到页面展示
+	}
+	
 	@RequestMapping("/view")
-	public String view(int no_id,Model model){
+	public String view(Integer no_id,Model model){
 		// 根据编号去查询老师信息
 		Notice notice = noticeDao.findById(no_id);
 		// 将查询的老师数据放入model中
 		model.addAttribute("obj", notice);
 		return "notice/view";//跳转显示页面
+	}
+	
+	@RequestMapping("/save")
+	public String save(Notice notice){
+		//
+		if(notice.getNo_id()== null){
+			System.out.println(notice.getNo_id());
+			noticeDao.save(notice);// 保存
+		}else{
+			// 编辑操作
+			noticeDao.update(notice);// 修改保存
+		}
+		return "forward:/notice/mlist";// 返回列表页面
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(Integer no_id,Model model){
+		noticeDao.delete(no_id);
+		model.addAttribute("msg", "成功删除数据");
+		return "forward:/notice/mlist";// 返回列表页面
+	}
+	
+	//跳转到编辑页面
+	@RequestMapping("/edit")
+	public String edit(Integer no_id,Model model){
+		// 根据编号查询该教师信息
+		Notice notice = noticeDao.findById(no_id);
+		// 将查询的老师数据放入model中
+		model.addAttribute("obj", notice);
+		return "notice/edit";
 	}
 }

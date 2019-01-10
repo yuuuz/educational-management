@@ -45,6 +45,9 @@ public interface StudentDao {
 	@SelectProvider(type=StudentSqlProvider.class,method="findByMap")
 	public List<Student> findByMap(Map<String, String> map);
 	
-	@SelectProvider(type=TeacherSqlProvider.class,method="findByLikeName")
+	@SelectProvider(type=StudentSqlProvider.class,method="findByLikeName")
 	public List<Student> findByLikeName(String q_name);
+		
+	@Update("update student set s_pa=#{s_pa} where s_id=#{s_id}")
+	public void updatePassword(Student student);
 }

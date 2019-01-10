@@ -36,6 +36,10 @@ public interface TeacherDao {
 	@Update("update teacher set t_name=#{t_name} where t_id=#{t_id}")
 	public void update(Teacher teacher);
 	
+	//更新密码
+	@Update("update teacher set t_pa=#{t_pa} where t_id=#{t_id}")
+	public void updatePassword(Teacher teacher);
+	
 	//根据条件进行查询
 	// 动态sql 
 	@SelectProvider(type=TeacherSqlProvider.class,method="findByMap")

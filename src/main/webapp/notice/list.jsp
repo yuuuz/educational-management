@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!-- 引入标签jstl -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
 	<c:forEach items="${pageInfo.list}" var="t">
 	<tr>
 		<td><a href="<%=request.getContextPath()%>/notice/view?no_id=${t.no_id}">${t.title}</a></td>
-		<td>${t.date}</td>
+		<td><fmt:formatDate value="${t.date}" pattern="yyyy年MM月dd日 HH:mm:ss" /> </td>
 	</tr>
 	</c:forEach>
 	</tbody>
@@ -47,8 +48,8 @@
 		  //执行一个laypage实例
 		  laypage.render({
 		    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-		    ,count: ${pageInfo.total} //数据总数，从服务端得到
-		    ,limit: ${pageInfo.pageSize}// 每页显示的最大记录数
+		    ,count: ${pageInfo.total}  //数据总数，从服务端得到
+		    ,limit: ${pageInfo.pageSize} // 每页显示的最大记录数
 		    ,curr: '${pageInfo.pageNum}' // 指明当前页
 		    ,jump: function(obj, first){
 		        //obj包含了当前分页的所有参数，比如：

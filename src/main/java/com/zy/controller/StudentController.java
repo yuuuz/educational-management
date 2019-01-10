@@ -1,5 +1,7 @@
 package com.zy.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,9 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 import com.zy.dao.StudentDao;
-import com.zy.dao.TeacherDao;
 import com.zy.entity.Student;
-import com.zy.entity.Teacher;
 import com.zy.service.StudentService;
 
 /**
@@ -105,6 +105,87 @@ public class StudentController {
 			return "yes";
 		}else{
 			return "no";
+		}
+	}
+	
+	//跳转到修改密码界面
+	@RequestMapping("/resetPassword")
+	public String resetPassword(String s_id,Model model) {
+		// 根据编号去查询学生信息
+		Student student = studentDao.findById(s_id);
+		// 将查询的学生数据放入model中
+		model.addAttribute("obj", student);
+		return  "my/resetPassword";
+	}
+		
+	//修改密码
+	@RequestMapping("/savePassword")
+	public String savePassword(String s_id,String oldPassword,String newPassword,String confirmNewPassword,HttpServletRequest request) {
+			
+		Student student = studentDao.findById(s_id);		
+		//旧密码正确
+		if(oldPassword.equals(student.getS_pa())) {
+			//判断两次输入的新密码是否相同
+			if (newPassword.equals(confirmNewPassword)) {
+				student.setS_pa(newPassword);
+				studentDao.updatePassword(student);
+				request.setAttribute("msg", "修改密码成功");
+				return "my/resetPassword";
+			}else {
+				request.setAttribute("msg", "两次输入的密码不一致");
+				return "my/resetPassword";
+			}
+		}else {  //旧密码不正确
+			request.setAttribute("msg", "旧密码错误！");
+			return "my/resetPassword";
+		}
+	}
+	
+	@RequestMapping("/resetStudentPasswordList")
+	public String resetStudentPasswordList(@RequestParam(name="q_id",defaultValue="")String s_id,
+			@RequestParam(defaultValue="",name="q_name")String s_name,
+			@RequestParam(defaultValue="1")Integer pageNum,
+			@RequestParam(defaultValue="5")Integer pageSize,Model model) {
+
+
+		// 获取老师的信息
+		String q_name = s_name;
+		if (!"".equals(q_name)) {
+			// 模糊查询
+			q_name = "%" + q_name + "%";
+		}
+
+
+		model.addAttribute("q_name", q_name);
+		model.addAttribute("q_id", s_id);
+		PageInfo<Student> pageData = studentService.pageQuery(s_id, q_name, pageNum, pageSize);
+		// 将数据放到model
+		model.addAttribute("pageInfo", pageData);
+		return  "student/resetStudentPasswordList";
+	}
+	//跳转到重置密码界面
+	@RequestMapping("/reset")
+	public String reset(String s_id,Model model){
+		// 根据编号去查询老师信息
+		Student student = studentDao.findById(s_id);
+		// 将查询的老师数据放入model中
+		model.addAttribute("obj", student);
+		
+		return "student/reset";//跳转显示页面
+		
+	}
+	
+	@RequestMapping("/saveStudentPassword")
+	public String saveTeacherPassword(String s_id,String newPassword,String confirmNewPassword,HttpServletRequest request) {
+		// 根据编号去查询教师信息
+		Student student = studentDao.findById(s_id);
+		if (newPassword.equals(confirmNewPassword)) {
+			student.setS_pa(newPassword);
+			studentDao.updatePassword(student);
+			return "forward:/student/resetStudentPasswordList";
+		} else {
+			request.setAttribute("msg", "两次输入的密码不一致");
+			return "student/reset";
 		}
 	}
 }

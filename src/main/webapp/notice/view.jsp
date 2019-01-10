@@ -14,12 +14,13 @@
 </head>
 <body>
 	<div class="layui-container"> 
-<div class="layui-row">
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-  <legend>通知公告</legend>
-</fieldset>
-</div>
-	<h2 style="text-align: center;"><b>${obj.title}</b></h2>
-	<p>${obj.context}</p>
+		<div class="layui-row">
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  			<legend>通知公告</legend>
+		</fieldset>
+		</div>
+		<h2 style="text-align: center;"><b>${obj.title}</b></h2>
+		<pre>${obj.context}</pre>
+	</div>	
 </body>
 </html>

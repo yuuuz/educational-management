@@ -16,11 +16,11 @@
 </fieldset>
 </div>
 <div class="layui-row" >
-<form class="layui-form" action="<%=request.getContextPath() %>/student/savePassword?s_id=${loginUser.s_id}" method="post">
+<form class="layui-form" action="<%=request.getContextPath() %>/admin/savePassword?m_id=${loginUser.m_id}" method="post">
   <div class="layui-form-item">
 	<label class="layui-form-label">用户</label>
 	<div class="layui-input-inline">
-		<input type="text" name="name" value="${sessionScope.loginUser.s_id}" readonly lay-verify="title" class="layui-input">
+		<input type="text" name="name" value="${loginUser.m_id}" readonly lay-verify="title" class="layui-input">
 	</div>
   </div>
   <div class="layui-form-item">

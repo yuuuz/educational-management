@@ -57,20 +57,20 @@
           <dl class="layui-nav-child">
             <dd><a href="javascript:go('teacher/list');">教师管理</a></dd>
             <dd><a href="javascript:go('student/list');">学生管理</a></dd>
-            <dd><a href="javascript:;">课程管理</a></dd>
-            <dd><a href="">超链接</a></dd>
+            <dd><a href="">课程管理</a></dd>
+            <dd><a href="javascript:go('notice/mlist');">通知公告管理</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item">
-          <a href="javascript:;">解决方案</a>
+          <a href="javascript:;">系统设置</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">列表一</a></dd>
-            <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="">超链接</a></dd>
+            <dd><a href="javascript:go('admin/resetPassword?m_id=${loginUser.m_id}')">修改密码</a></dd>
+            <dd><a href="javascript:go('teacher/resetTeacherPasswordList')">重置教师密码</a></dd>
+            <dd><a href="javascript:go('student/resetStudentPasswordList')">重置学生密码</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="">云市场</a></li>
-        <li class="layui-nav-item"><a href="">发布商品</a></li>
+        <li class="layui-nav-item"><a href="">待定</a></li>
+        <li class="layui-nav-item"><a href="">待定</a></li>
       </ul>
     </div>
   </div>
