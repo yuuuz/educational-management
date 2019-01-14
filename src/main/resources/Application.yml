@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql:///crebas
+    url: jdbc:mysql:///student
     username: root
     password: hhxxttxs123
   mvc:

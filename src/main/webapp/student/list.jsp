@@ -26,6 +26,12 @@ function query(){
   <legend>学生信息</legend>
 </fieldset>
 </div>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <div class="layui-row">
 <table>
 <tr>
@@ -69,7 +75,7 @@ function query(){
 		  
 		  //执行一个laypage实例
 		  laypage.render({
-		    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+		    elem: 'test1' //注意，这里的 test1 是 ID，不用加 #号
 		    ,count: ${pageInfo.total} //数据总数，从服务端得到
 		    ,limit: ${pageInfo.pageSize}// 每页显示的最大记录数
 		    ,curr: '${pageInfo.pageNum}' // 指明当前页

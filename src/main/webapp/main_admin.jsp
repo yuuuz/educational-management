@@ -16,6 +16,12 @@
 			}
 	</style>
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">

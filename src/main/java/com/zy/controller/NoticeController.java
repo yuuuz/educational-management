@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.pagehelper.PageInfo;
 import com.zy.dao.NoticeDao;
+import com.zy.dao.NoticeSqlProvider;
 import com.zy.entity.Notice;
-import com.zy.entity.Student;
 import com.zy.service.NoticeService;
 
 /**
@@ -73,6 +73,12 @@ public class NoticeController {
 		return "forward:/notice/mlist";// 返回列表页面
 	}
 	
+	@RequestMapping("/deleteAll")
+	public String deleteAll(String no_id,Model model){
+		noticeDao.deleteAll(no_id);
+		model.addAttribute("msg", "成功批量删除数据");
+		return "forward:/notice/mlist";// 返回列表页面
+	}
 	//跳转到编辑页面
 	@RequestMapping("/edit")
 	public String edit(Integer no_id,Model model){

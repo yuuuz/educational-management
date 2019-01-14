@@ -18,6 +18,7 @@ import com.zy.entity.Notice;
 public class NoticeService {
 	@Autowired
 	NoticeDao noticeDao;
+	
 	public PageInfo<Notice> pagelist(int pageNum,int pageSize){
 		PageHelper.startPage(pageNum, pageSize);
 		List<Notice> all = noticeDao.findAll();

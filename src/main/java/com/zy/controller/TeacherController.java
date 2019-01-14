@@ -1,13 +1,17 @@
 package com.zy.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.zy.dao.TeacherDao;
@@ -186,5 +190,15 @@ public class TeacherController {
 			request.setAttribute("msg", "原来的密码错误！");
 			return "teacher/resetPassword";
 		}
+	}
+	
+	
+	
+	@RequestMapping("/getAll")
+	@CrossOrigin
+	@ResponseBody
+	public List<Teacher> getAll(){
+		System.out.println(">>>进入系统");
+		return teacherDao.findAll();
 	}
 }

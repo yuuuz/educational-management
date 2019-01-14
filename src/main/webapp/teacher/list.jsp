@@ -18,6 +18,12 @@ function query(){
 	document.location.href="<%=request.getContextPath()%>/teacher/list?pageNum=1&pageSize=5&q_name="+name+"&q_id="+id;
 }
 </script>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 </head>
 <body>
 <div class="layui-container"> 

@@ -10,9 +10,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <!-- 引入layui的样式文件 -->
 <link rel="stylesheet" href="<%=request.getContextPath() %>/layui/css/layui.css">
-
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/jquery-3.1.1.min.js"></script>
 <title>通知公告管理</title>
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body>
 <div class="layui-container"> 
 <div class="layui-row">
@@ -20,20 +27,26 @@
   <legend>通知公告管理</legend>
 </fieldset>
 </div>
+<div class="layui-row">
+<input class="layui-form-checkbox" id="checkAll" type="checkbox" lay-skin="primary"/> 全选
+<a  class="layui-btn layui-btn-sm" id="deleteAll">批量删除</a>
 <a href="<%=request.getContextPath() %>/notice/add.jsp" class="layui-btn layui-btn-sm">发布公告</a>
+</div>
+
 <div class="layui-row">
 <table class="layui-table">
 	<tbody>
 	<!-- 如何展示集合对象   使用标签c:forEach  items 集合对象的名字-->
 	<c:forEach items="${pageInfo.list}" var="t">
-	<tr>
-		<td><a href="<%=request.getContextPath()%>/notice/view?no_id=${t.no_id}">${t.title}</a></td>
-		<td><fmt:formatDate value="${t.date}" pattern="yyyy年MM月dd日 HH:mm:ss" /></td>
-		<td><div class="layui-btn-group">
-    		<button class="layui-btn" onclick="javascript:document.location.href='<%=request.getContextPath()%>/notice/edit?no_id=${t.no_id}';">编辑</button>
-    		<button class="layui-btn" onclick="javascript:if(confirm('确定要删除么'))document.location.href='<%=request.getContextPath()%>/notice/delete?no_id=${t.no_id}';">删除</button>
-		</div></td>
-	</tr>
+		<tr>
+			<td><input class="layui-form-checkbox" id="box" value="${t.no_id}" type="checkbox" lay-skin="primary" /></td>
+			<td><a href="<%=request.getContextPath()%>/notice/view?no_id=${t.no_id}">${t.title}</a></td>
+			<td><fmt:formatDate value="${t.date}" pattern="yyyy年MM月dd日 HH:mm:ss" /></td>
+			<td><div class="layui-btn-group">
+	    		<button class="layui-btn" onclick="javascript:document.location.href='<%=request.getContextPath()%>/notice/edit?no_id=${t.no_id}';">编辑</button>
+	    		<button class="layui-btn" onclick="javascript:if(confirm('确定要删除么'))document.location.href='<%=request.getContextPath()%>/notice/delete?no_id=${t.no_id}';">删除</button>
+			</div></td>
+		</tr>
 	</c:forEach>
 	</tbody>
 </table>
@@ -64,13 +77,39 @@
 		        //首次不执行
 		        if(!first){
 		        	// 改变当前的地址
-		        	var url = "<%=request.getContextPath()%>/teacher/list?pageNum=" +obj.curr+"&pageSize="+obj.limit";
+		        	var url = "<%=request.getContextPath()%>/notice/mlist?pageNum=" +obj.curr+"&pageSize="+obj.limit;
 		        	console.log(url);
 		        	document.location.href=url;
 		        }
 		      }
 		  });
 		});
+	
+	
+	$("#deleteAll").click(function() {
+		var cbs = $("input[id=box]:checked");
+		if(cbs.length==0){
+			alert("请至少选择一个");
+			return;
+		}
+		var str = "";
+		for (var i =0;i<cbs.length;i++) {
+			var cb = cbs[i].value;
+			str = str + cb + ",";
+		}
+		str = str.substr(0,str.length-1);
+		console.log(str);
+		document.location.href="<%=request.getContextPath() %>/notice/deleteAll?no_id="+str;
+	})
+	//全選/全不选
+	var flag = true;
+	$("#checkAll").click(function(){
+			var cb = $("input[type=checkbox]");
+			for (var i =0 ;i<cb.length;i++) {
+				cb[i].checked = flag;
+			}
+			flag=!flag;
+	})
 </script>
 </body>
 </html>

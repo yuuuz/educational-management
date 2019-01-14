@@ -13,6 +13,12 @@
 	src="<%=request.getContextPath()%>/js/jquery-3.1.1.min.js"></script>
 <title>发布公告</title>
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body>
 	<div class="layui-container">
 		<div class="layui-row">

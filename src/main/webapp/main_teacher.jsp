@@ -8,6 +8,12 @@
   <title>教务管理系统</title>
   <link rel="stylesheet" href="<%=request.getContextPath() %>/layui/css/layui.css">
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
@@ -47,9 +53,9 @@
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
       <li class="layui-nav-item"><a href="javascript:go('notice/list')">通知公告</a></li>
         <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">成绩管理</a>
+          <a class="" href="javascript:;">教学管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:go('course/list');">课程管理</a></dd>
+            <dd><a href="javascript:go('course/courselist?t_id=${loginUser.t_id}');">查看课程</a></dd>
             <dd><a href="javascript:go('score/list');">成绩管理</a></dd>
           </dl>
         </li>
@@ -60,12 +66,12 @@
   
   <div class="layui-body">
     <!-- 内容主体区域 -->
-    <iframe onload="resetFrame()" src="wellcome.html" id="main" style="border:0;width:100%;"></iframe>
+    <iframe onload="resetFrame()" src="notice/list" id="main" style="border:0;width:100%;"></iframe>
   </div>
   
   <div class="layui-footer">
     <!-- 底部固定区域 -->
-   版权所有 © 文都智链  网址：<a href="http://www.wdzl.com">www.wdzl.com</a>
+   版权所有 © 西安建筑科技大学  计算机1501
   </div>
 </div>
 <script src="<%=request.getContextPath() %>/layui/layui.js"></script>
@@ -90,14 +96,5 @@ layui.use('element', function(){
   
 });
 </script>
-</body>
-</html>
-
-
-
-
-
-
-
 </body>
 </html>

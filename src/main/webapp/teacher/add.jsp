@@ -10,6 +10,12 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-3.1.1.min.js"></script>
 <title>老师信息的展示</title>
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body>
 <div class="layui-container"> 
 <div class="layui-row">

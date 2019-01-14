@@ -8,6 +8,12 @@
   <title>后台管理-学生管理系统</title>
   <link rel="stylesheet" href="<%=request.getContextPath() %>/layui/css/layui.css">
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
@@ -48,6 +54,13 @@
         <li class="layui-nav-item"><a href="javascript:go('my/editInfo')">个人信息</a></li>
         <li class="layui-nav-item"><a href="javascript:go('student/resetPassword?s_id=${loginUser.s_id}')">修改密码</a></li>
         <li class="layui-nav-item"><a href="javascript:go('notice/list')">通知公告</a></li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">课程管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:go('course/prelist?s_id=${loginUser.s_id}')">选课</a></dd>
+            <dd><a href="javascript:go('course/selectedlist?s_id=${loginUser.s_id}')">已选课程</a></dd>
+          </dl>
+        </li>
       </ul>
     </div>
   </div>
@@ -55,13 +68,13 @@
   <div class="layui-body">
     <!-- 内容主体区域 -->
     
-    <iframe onload="resetFrame()" id="main" style="border:0;width:100%;">
+    <iframe onload="resetFrame()" src="notice/list" id="main" style="border:0;width:100%;">
     </iframe>
   </div>
   
   <div class="layui-footer">
     <!-- 底部固定区域 -->
-   版权所有 © 文都智链  网址：<a href="http://www.wdzl.com">www.wdzl.com</a>
+   版权所有 © 西安建筑科技大学  计算机1501
   </div>
 </div>
 <script src="<%=request.getContextPath() %>/layui/layui.js"></script>

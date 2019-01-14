@@ -17,6 +17,12 @@ function query(){
 }
 </script>
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body>
 <div class="layui-container"> 
 <div class="layui-row">

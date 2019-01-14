@@ -13,6 +13,12 @@
 
 <title>通知公告</title>
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body>
 <div class="layui-container"> 
 <div class="layui-row">
@@ -48,8 +54,8 @@
 		  //执行一个laypage实例
 		  laypage.render({
 		    elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-		    ,count: ${pageInfo.total}  //数据总数，从服务端得到
-		    ,limit: ${pageInfo.pageSize} // 每页显示的最大记录数
+		    ,count: '${pageInfo.total}'  //数据总数，从服务端得到
+		    ,limit: '${pageInfo.pageSize}' // 每页显示的最大记录数
 		    ,curr: '${pageInfo.pageNum}' // 指明当前页
 		    ,jump: function(obj, first){
 		        //obj包含了当前分页的所有参数，比如：
@@ -59,7 +65,7 @@
 		        //首次不执行
 		        if(!first){
 		        	// 改变当前的地址
-		        	var url = "<%=request.getContextPath()%>/teacher/list?pageNum=" +obj.curr+"&pageSize="+obj.limit";
+		        	var url = "<%=request.getContextPath()%>/notice/list?pageNum=" +obj.curr+"&pageSize="+obj.limit;
 		        	console.log(url);
 		        	document.location.href=url;
 		        }

@@ -12,6 +12,12 @@
 
 <title>老师信息的展示</title>
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body>
 	<div class="layui-container">
 		<div class="layui-row">

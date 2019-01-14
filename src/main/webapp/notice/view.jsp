@@ -12,6 +12,12 @@
 	href="<%=request.getContextPath()%>/layui/css/layui.css">
 <title>通知公告</title>
 </head>
+<% 
+    if(session.getAttribute("loginUser")== null){
+         response.sendRedirect("login");
+         return;
+    }
+%>
 <body>
 	<div class="layui-container"> 
 		<div class="layui-row">

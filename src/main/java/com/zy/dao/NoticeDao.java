@@ -3,12 +3,15 @@ package com.zy.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 
 import com.zy.entity.Notice;
+import com.zy.entity.Teacher;
 
 
 /**
@@ -17,7 +20,7 @@ import com.zy.entity.Notice;
 */
 @Mapper
 public interface NoticeDao {
-	@Select("select * from notice")
+	@Select("select * from notice order by no_id desc")
 	public List<Notice> findAll();
 	
 	@Select("select * from notice where no_id=#{no_id} ")
@@ -32,5 +35,7 @@ public interface NoticeDao {
 	// 根据编号删除数据
 	@Delete("delete from notice where no_id =#{no_id}")
 	public void delete(Integer no_id);
-		
+	
+	@DeleteProvider(type=NoticeSqlProvider.class,method="deleteAll")
+	public void deleteAll(String no_id);	
 }
